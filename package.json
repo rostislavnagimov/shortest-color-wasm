@@ -1,0 +1,16 @@
+{
+  "name": "shortest-color-wasm",
+  "version": "0.1.0",
+  "description": "Fast shortest CSS color converter (Rust+WASM)",
+  "main": "npm-package/pkg/shortest_color_wasm.js",
+  "browser": "npm-package/pkg-web/shortest_color_wasm.js",
+  "types": "npm-package/pkg/shortest_color_wasm.d.ts",
+  "files": ["npm-package"],
+  "scripts": {
+    "build:node": "wasm-pack build --release --target nodejs --out-dir pkg",
+    "build:web": "wasm-pack build --release --target web --out-dir pkg-web",
+    "prepare-npm": "rm -rf npm-package && mkdir -p npm-package/pkg npm-package/pkg-web && cp pkg/*.js pkg/*.wasm pkg/*.d.ts npm-package/pkg/ && cp pkg-web/*.js pkg-web/*.wasm pkg-web/*.d.ts npm-package/pkg-web/",
+    "build": "npm run build:node && npm run build:web && npm run prepare-npm",
+    "prepublishOnly": "npm run build"
+  }
+}

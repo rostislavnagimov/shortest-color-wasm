@@ -1,0 +1,15 @@
+# Rust build
+/target/
+
+# wasm-pack output (папки с артефактами)
+pkg/
+pkg-web/
+npm-package/
+
+# Node modules
+node_modules/
+
+# лог-файлы
+*.log
+.DS_Store
+Cargo.lock
