@@ -1,10 +1,30 @@
 {
   "name": "shortest-color",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Fast shortest CSS color converter (Rust+WASM)",
   "main": "./index.mjs",
   "module": "./index.mjs",
   "types": "./index.d.ts",
+    "keywords": [
+    "color",
+    "css",
+    "parser",
+    "hex",
+    "rgb",
+    "rgba",
+    "hsl",
+    "hsla",
+    "shorten",
+    "converter",
+    "webcolors",
+    "shortest-color"
+  ],
+  "author": "Rostislav Nagimov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rostislavnagimov/shortest-color-wasm"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
