@@ -1,16 +1,33 @@
 {
-  "name": "shortest-color-wasm",
-  "version": "0.1.0",
+  "name": "shortest-color",
+  "version": "0.1.3",
   "description": "Fast shortest CSS color converter (Rust+WASM)",
-  "main": "npm-package/pkg/shortest_color_wasm.js",
-  "browser": "npm-package/pkg-web/shortest_color_wasm.js",
-  "types": "npm-package/pkg/shortest_color_wasm.d.ts",
-  "files": ["npm-package"],
+  "main": "./index.mjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.cjs",
+      "default": "./index.mjs"
+    }
+  },
+  "files": [
+    "index.cjs",
+    "index.mjs",
+    "index.d.ts",
+    "node.js",
+    "node_bg.wasm",
+    "shortest_color_wasm.js",
+    "shortest_color_wasm_bg.js",
+    "shortest_color_wasm_bg.wasm"
+  ],
   "scripts": {
-    "build:node": "wasm-pack build --release --target nodejs --out-dir pkg",
-    "build:web": "wasm-pack build --release --target web --out-dir pkg-web",
-    "prepare-npm": "rm -rf npm-package && mkdir -p npm-package/pkg npm-package/pkg-web && cp pkg/*.js pkg/*.wasm pkg/*.d.ts npm-package/pkg/ && cp pkg-web/*.js pkg-web/*.wasm pkg-web/*.d.ts npm-package/pkg-web/",
-    "build": "npm run build:node && npm run build:web && npm run prepare-npm",
+    "clean": "rm -rf pkg-node pkg-bundler index.* node.* shortest_color_wasm*",
+    "build:node": "wasm-pack build --release --target nodejs --out-dir pkg-node",
+    "build:bundler": "wasm-pack build --release --target bundler --out-dir pkg-bundler",
+    "build": "npm run build:node && npm run build:bundler && node create-wrapper.cjs",
     "prepublishOnly": "npm run build"
   }
 }
